@@ -7,8 +7,6 @@ using Vuforia;
 
 public class DropWater : MonoBehaviour
 {
-
-
     private MeshRenderer mr;
 
     public GameObject liquid;
