@@ -9,7 +9,7 @@ public class DropWater : MonoBehaviour
 {
     private MeshRenderer mr;
 
-    public GameObject liquid;
+    private GameObject liquid;
 
     public float selfRotX;
     public float pourRot;
