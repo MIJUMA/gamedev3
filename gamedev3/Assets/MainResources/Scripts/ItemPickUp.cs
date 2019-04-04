@@ -9,7 +9,7 @@ public class ItemPickUp : Interactable
     public override void Interact()
     {
        Debug.Log("Pick");
-       //base.Interact();
+       base.Interact();
 
        PickUp();
     }
