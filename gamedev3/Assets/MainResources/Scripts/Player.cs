@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public GameObject inventorySlotsContainer;
     public Camera fpsCam;
-    public float range = 4f;
+    public float range = 1000f;
     public GameObject InventoryItemsContainer;
     public GameObject inventorySlots;
 
@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         inventoryActive = false;
-
     }
 
     // Update is called once per frame
