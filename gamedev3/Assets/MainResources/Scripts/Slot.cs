@@ -20,7 +20,8 @@ public class Slot : MonoBehaviour
         {
             print("Dropped");
             Transform playerTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
-            itemTransform.SetPositionAndRotation(playerTransform.position, playerTransform.rotation);
+            //itemTransform.SetPositionAndRotation(playerTransform.position, playerTransform.rotation);
+            itemTransform.SetPositionAndRotation(itemTransform.position, itemTransform.rotation);
             itemTransform.SetParent(itemsContainer.transform);
             img.texture = null;
         }
