@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ea5e1e21ab4e84dbbcf35d92766cf2, type: 3}
+  m_Name: IntroTrigger
+  m_EditorClassIdentifier: 
+  narrative:
+    name: Intro Trigger
+    image: {fileID: 21300000, guid: 4b5f3463294847247a66dd9845e3958a, type: 3}
+    dialogue:
+      name: TestDialogue
+      sentences:
+      - I'm going to take you back in time...
+      - You need to figure out how to stop the APOCALYPSE! Okay?...
+      - Now at the very end of the world everything burned, and there was this kid,
+        a candle and a dripping cup of water...
+      - Combining these items you can save the world...
+      - Go ahead. Touch that cup.
+      sentencesClips:
+      - {fileID: 8300000, guid: 86bd1c12c57c88f4a86ee9d88ff01945, type: 3}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}

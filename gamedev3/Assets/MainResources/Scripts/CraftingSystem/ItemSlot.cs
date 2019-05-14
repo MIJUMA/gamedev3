@@ -40,12 +40,12 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         
-        if (eventData != null && eventData.button == PointerEventData.InputButton.Right)
+        if (eventData != null && (eventData.button == PointerEventData.InputButton.Left || (eventData.pointerCurrentRaycast.gameObject.name == "Item Slot" || eventData.pointerCurrentRaycast.gameObject.name == "CraftableResource Slot")))
         {
+            Debug.Log(eventData.pointerCurrentRaycast.gameObject);
             if (Item != null && OnRightClickEvent != null)
             {
                 OnRightClickEvent(Item);
-                
             }
         }
     }

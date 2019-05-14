@@ -1,17 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemChest : MonoBehaviour
 {
     [SerializeField] Item item;
+    [SerializeField] GameObject itemObject;
     [SerializeField] int amount = 1;
     [SerializeField] Inventory inventory;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Color emptyColor;
     [SerializeField] KeyCode itemPickupKeyCode = KeyCode.E;
 
-    private bool isInRange;
+    private bool alreadyPicked = false;
+
+    private bool isInRange = true;
     private bool isEmpty;
 
     private void OnValidate()
@@ -28,10 +32,10 @@ public class ItemChest : MonoBehaviour
 
     private void Update()
     {
-        
-        if (isInRange && !isEmpty && Input.GetKeyDown(itemPickupKeyCode))
+       
+        if (!isEmpty && (
+             Input.GetKeyDown(itemPickupKeyCode)))
         {
-            
             Item itemCopy = item.GetCopy();
             if (inventory.AddItem(itemCopy))
             {
@@ -40,6 +44,7 @@ public class ItemChest : MonoBehaviour
                 {
                     isEmpty = true;
                     spriteRenderer.color = emptyColor;
+                    itemObject.SetActive(false);
                 }
             }
             else
@@ -47,34 +52,41 @@ public class ItemChest : MonoBehaviour
                 itemCopy.Destroy();
             }
         }
+  
     }
 
-    private void OnTriggerEnter(Collider other)
+   
+
+    private bool IsTapping()
     {
-        CheckCollision(other.gameObject, true);
+        for(int i = 0; i < Input.touches.Length; i++) {
+            if (Input.touches[i].phase == TouchPhase.Began)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    private void OnTriggerExit(Collider other)
+    public void pickUp()
     {
-        CheckCollision(other.gameObject, false);
-    }
+        if (alreadyPicked) { return; }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        CheckCollision(collision.gameObject, true);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        CheckCollision(collision.gameObject, false);
-    }
-
-    private void CheckCollision(GameObject gameObject, bool state)
-    {
-        if (gameObject.CompareTag("Player"))
+        alreadyPicked = true;
+        Item itemCopy = item.GetCopy();
+        if (inventory.AddItem(itemCopy))
         {
-            isInRange = state;
-            spriteRenderer.enabled = state;
+            amount--;
+            if (amount == 0)
+            {
+                isEmpty = true;
+                spriteRenderer.color = emptyColor;
+                itemObject.SetActive(false);
+            }
+        }
+        else
+        {
+            itemCopy.Destroy();
         }
     }
 }

@@ -11,11 +11,12 @@ public enum EquipmentType
 [CreateAssetMenu]
 public class EquippableItem : Item
 {
-    public int StrengthBonus;
+    
     [Space]
     public EquipmentType EquipmentType;
+    public GameObject VirtualObject;
 
 
-    
+
 }
 

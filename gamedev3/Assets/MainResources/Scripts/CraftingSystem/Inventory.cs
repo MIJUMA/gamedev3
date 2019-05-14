@@ -8,6 +8,10 @@ public class Inventory : MonoBehaviour, IItemContainer
     [SerializeField] Transform itemsParent;
     [SerializeField] ItemSlot[] itemSlots;
 
+    public AudioSource audioSource;
+    public AudioClip equipSound;
+
+
     public event Action<Item> OnItemRightClickedEvent;
 
     private void Start()
@@ -17,6 +21,11 @@ public class Inventory : MonoBehaviour, IItemContainer
             
             itemSlots[i].OnRightClickEvent += OnItemRightClickedEvent;
         }   
+    }
+
+    public List<Item> GetItems()
+    {
+        return items;
     }
 
     private void OnValidate()
@@ -47,11 +56,17 @@ public class Inventory : MonoBehaviour, IItemContainer
     public bool AddItem(Item item)
     {
         if (IsFull())
+        {
             return false;
-
-        items.Add(item);
-        RefreshUI();
-        return true;
+        }
+        else
+        {
+            items.Add(item);
+            audioSource.clip = equipSound;
+            audioSource.Play();
+            RefreshUI();
+            return true;
+        }
     }
 
     public bool RemoveItem(Item item)
@@ -65,21 +80,13 @@ public class Inventory : MonoBehaviour, IItemContainer
         return false;
     }
 
+    
     public bool IsFull()
     {
         return items.Count >= itemSlots.Length;
     }
 
-    public bool ContainsItems(Item item)
-    {
-        int i = 0;
-        for (; i < items.Count && i < itemSlots.Length; i++)
-        {
-            return true;
-        }
-
-        return false;
-    }
+    
 
     public int ItemCount(Item item)
     {

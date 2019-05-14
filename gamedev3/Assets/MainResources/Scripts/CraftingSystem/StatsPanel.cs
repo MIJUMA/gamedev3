@@ -10,7 +10,12 @@ public class StatsPanel : MonoBehaviour
     [SerializeField] string[] statNames;
     [SerializeField] StatDisplay[] statDisplays;
     private CharacterStat[] characterStats;
-    private CraftingRecipe[] craftedRecipes;
+    private List<CraftingRecipe> craftedRecipes = new List<CraftingRecipe>();
+
+    public List<CraftingRecipe> GetCraftedRecipes()
+    {
+        return craftedRecipes;
+    }
 
     private void OnValidate()
     {
@@ -18,30 +23,11 @@ public class StatsPanel : MonoBehaviour
         //UpdateCharacterStatNames();
     }
 
-    
-    //public void SetCharacterStats(params CharacterStat[] charStats)
-    //{
-    //    characterStats = charStats;
-    //
-     //   if (characterStats.Length > statDisplays.Length)
-    //    {
-    //        Debug.LogError("Not Enough Stat Displays");
-    //        return;
-    //    }
-    //
-    //    for (int i = 0; i < statDisplays.Length; i++)
-    //    {
-    //        statDisplays[i].gameObject.SetActive(i < characterStats.Length);
-    //    } 
-    //}
-
-    
-
     public void SetCharacterRecipes(List<CraftingRecipe> recipes)
     {
-        craftedRecipes = recipes.ToArray();
+        craftedRecipes = recipes;
 
-        if (craftedRecipes.Length > statDisplays.Length)
+        if (craftedRecipes.Count > statDisplays.Length)
         {
             Debug.LogError("Not Enough Stat Displays");
             return;
@@ -49,11 +35,11 @@ public class StatsPanel : MonoBehaviour
 
         for (int i = 0; i < statDisplays.Length; i++)
         {
-            if (i < craftedRecipes.Length)
+            if (i < craftedRecipes.Count)
             {
                 statDisplays[i].gameObject.SetActive(true);
                 statDisplays[i].StatNameText.text = GenerateStatName(craftedRecipes[i]);
-                statDisplays[i].StatValueText.text = "Crafted";
+                statDisplays[i].StatValueText.text = craftedRecipes[i].progressActionName;
             }
             else
             {

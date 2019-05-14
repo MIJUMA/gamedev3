@@ -14,7 +14,8 @@ public struct ItemAmount
 public class CraftingRecipe : ScriptableObject
 {
     public List<ItemAmount> Materials;
-    public DialogueTrigger resultDialogue;
+    public Item resultProduct;
+    public string progressActionName = "Crafted";
 
     public bool CanCraft(IItemContainer itemContainer)
     {
@@ -32,7 +33,7 @@ public class CraftingRecipe : ScriptableObject
     {
         if (CanCraft(itemContainer))
         {
-            resultDialogue.TriggerDialogue();
+            //resultDialogue.TriggerDialogue();
         }
     }
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: Narrator
+    narrativeAudio: {fileID: 8300000, guid: c73207e832be4174e82a67b47763507d, type: 3}
     sentences:
     - Who knew a Nazi-Cyborg would burn like a matchstick?...
     - Nobody will notice one more dead kid...

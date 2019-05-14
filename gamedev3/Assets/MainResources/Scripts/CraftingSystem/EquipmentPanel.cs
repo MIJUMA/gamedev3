@@ -8,6 +8,7 @@ public class EquipmentPanel : MonoBehaviour
     [SerializeField] Transform equipmentSlotsParent;
     [SerializeField] EquipmentSlot[] equipmentSlots;
     [SerializeField] CraftingRecipe[] craftingRecipes;
+    
     private List<CraftingRecipe> craftedRecipes = new List<CraftingRecipe>();
 
     public event Action<Item> OnItemRightClickedEvent;
@@ -85,24 +86,44 @@ public class EquipmentPanel : MonoBehaviour
         }
     }
 
+    private List<Item> GetResultItems(CraftingRecipe recipe)
+    {
+        List<Item> resList = new List<Item>();
+        for (int i = 0; i < equipmentSlots.Length; i++)
+        {
+            if (equipmentSlots[i].Item is EquippableItem)
+            {
+                resList.Add(equipmentSlots[i].Item);
+            }
+        }
+        resList.Add(recipe.resultProduct);
+        return resList;
+    }
 
-    public void CraftItem()
+
+    public List<Item> CraftItem()
     {
         if (CanCraft())
         {
             foreach (CraftingRecipe recipe in craftingRecipes)
             {
-                if (isRecipeValid(recipe))
+                if (isRecipeValid(recipe) && !RecipeWasCrafted(recipe))
                 {
-                    recipe.resultDialogue.TriggerDialogue();
+                    List<Item> resItems = GetResultItems(recipe);
+                    //recipe.resultDialogue.TriggerDialogue();
                     RemoveItems();
                     craftedRecipes.Add(recipe);
-                    break;
+                    return resItems;
                 }
             }
         }
-        
-        
+
+        return new List<Item>();
+    }
+
+    private bool RecipeWasCrafted(CraftingRecipe recipe)
+    {
+        return craftedRecipes.Contains(recipe);
     }
 
     public List<CraftingRecipe> GetCraftedRecipes()
@@ -142,7 +163,6 @@ public class EquipmentPanel : MonoBehaviour
             {
                 return false;
             }
-
         }
         return true;
     }

@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public CharacterStat CandleCup;
-    public CharacterStat ChildCup;
-    public CharacterStat ChildCandle;
-
+    
     [SerializeField] Inventory inventory;
     [SerializeField] EquipmentPanel equipmentPanel;
     [SerializeField] StatsPanel statsPanel;
+
+    
+    public List<CraftingRecipe> GetStatsRecipes()
+    {
+        return statsPanel.GetCraftedRecipes();
+    }
 
     private void Awake()
     {
@@ -37,6 +40,16 @@ public class Character : MonoBehaviour
         if (item is EquippableItem)
         {
             Equip((EquippableItem)item);
+            
+        }
+    }
+
+    public void CraftItem()
+    {
+        List<Item> items = equipmentPanel.CraftItem();
+        foreach (Item i in items)
+        {
+            inventory.AddItem(i);
         }
     }
 
@@ -75,6 +88,19 @@ public class Character : MonoBehaviour
             inventory.AddItem(item);
         }
     }
+
+
+    public void ClosePanel()
+    {
+
+    }
+
+
+    public List<Item> GetInventoryItems()
+    {
+        return inventory.GetItems();
+    }
+
 
 
 }

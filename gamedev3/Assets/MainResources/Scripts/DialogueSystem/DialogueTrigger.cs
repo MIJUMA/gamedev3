@@ -7,7 +7,7 @@ using UnityEngine;
 public class DialogueTrigger : ScriptableObject
 {
     public Dialogue dialogue;
-
+   
     public void TriggerDialogue()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);

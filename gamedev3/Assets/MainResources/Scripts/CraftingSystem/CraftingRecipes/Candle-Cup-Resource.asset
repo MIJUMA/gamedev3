@@ -17,4 +17,5 @@ MonoBehaviour:
     Amount: 1
   - Item: {fileID: 11400000, guid: 9e418dd98a101cb44bbf317522040a08, type: 2}
     Amount: 1
-  resultDialogue: {fileID: 11400000, guid: 0d45185a1c8ba5848877be7b89f02984, type: 2}
+  resultProduct: {fileID: 11400000, guid: 2a59fef5359a0f14d9c7c5e92546ef81, type: 2}
+  progressActionName: Success

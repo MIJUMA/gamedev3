@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ea5e1e21ab4e84dbbcf35d92766cf2, type: 3}
+  m_Name: CupCandleCrafted
+  m_EditorClassIdentifier: 
+  narrative:
+    name: Cup Candle Crafted
+    image: {fileID: 0}
+    dialogue:
+      name: Cup Candle Crafted
+      sentences:
+      - You put out a candle. NICE...
+      - SUCCESS!!!
+      sentencesClips:
+      - {fileID: 8300000, guid: 763be76ee10e1b443a04e9b060dd7bf7, type: 3}
